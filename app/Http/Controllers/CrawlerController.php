@@ -41,7 +41,8 @@ class CrawlerController extends Controller
             $url = $this->getUrlByValue($urlSearch);
 
             if ($url) {
-                $urlsData = $this->getRelatedUrlsRecursive($urlSearch, $depth);
+//                $urlsData = $this->getRelatedUrlsRecursive($urlSearch, $depth);
+                $urlsData = $this->getAllUrls();
                 $isExists = true;
 
             } else {
@@ -177,9 +178,7 @@ class CrawlerController extends Controller
 
         $this->deleteUrlAndChildren($urlSearch);
 
-        $response = $this->crawl($request);
-
-        return $response;
+        return $this->crawl($request);
     }
 
     protected function deleteUrlAndChildren(string $url): void
