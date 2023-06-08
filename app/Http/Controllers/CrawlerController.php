@@ -47,8 +47,6 @@ class CrawlerController extends Controller
             } else {
                 $this->crawlAndSaveUrl($urlSearch, $depth, null);
                 $urlsData = $this->getAllUrls();
-                error_log("urlsData: " . print_r($urlsData, true));
-//                $urlsData = $this->crawlAndSaveUrl($urlSearch, $depth, null);
             }
 
         }
