@@ -45,18 +45,15 @@ class CrawlerController extends Controller
                 $isExists = true;
 
             } else {
-//                $this->crawlAndSaveUrl($urlSearch, $depth, null);
-//                $urlsData = $this->getRelatedUrlsRecursive($urlSearch, $depth);
-                $urlsData = $this->crawlAndSaveUrl($urlSearch, $depth, null);
+                $this->crawlAndSaveUrl($urlSearch, $depth, null);
+                $urlsData = $this->getRelatedUrlsRecursive($urlSearch, $depth);
+//                $urlsData = $this->crawlAndSaveUrl($urlSearch, $depth, null);
             }
 
         }
 
         return response()->json([
             'urlList' => [
-                'total' => count($urlsData),
-                'page' => 1,
-                'perPage' => count($urlsData),
                 'data' => $urlsData,
                 'existingUrl' => $isExists
             ]
