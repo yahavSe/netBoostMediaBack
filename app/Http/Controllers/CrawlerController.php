@@ -46,7 +46,8 @@ class CrawlerController extends Controller
 
             } else {
                 $this->crawlAndSaveUrl($urlSearch, $depth, null);
-                $urlsData = $this->getRelatedUrlsRecursive($urlSearch, $depth);
+                $urlsData = $this->getAllUrls();
+                error_log("urlsData: " . print_r($urlsData, true));
 //                $urlsData = $this->crawlAndSaveUrl($urlSearch, $depth, null);
             }
 
@@ -147,8 +148,9 @@ class CrawlerController extends Controller
         return $crawler->filter('a')->extract(['href']);
     }
 
-    protected function getRelatedUrlsRecursive($mainUrl, $depth): array
+    protected function getRelatedUrlsRecursive($mainUrl, $depth ): array
     {
+        error_log("depth" . $depth);
         if ($depth < 0) return [];
         $relatedUrls = $this->getRelatedUrls($mainUrl);
 
